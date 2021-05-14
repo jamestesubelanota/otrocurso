@@ -2,12 +2,25 @@
 
 <?php
 
-require_once '../config.php';
-$sql = "SELECT * FROM blog_post ORDER BY id DESC";
-$query = $pdo->prepare($sql);
-$query->execute();
-$blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
 
+$result = false;
+
+if(!empty($_POST)){
+$newTitle = $_POST['title'];
+$newContent = $_POST['content'];
+$sql = "INSERT INTO blog_post(title, content) VALUES(:title , :content)";
+$query= $pdo->prepare($sql);
+$query->execute([ 'title' => $newTitle,
+                   'content' =>$_POST['content']]);
+
+
+
+
+
+
+
+
+}
 ?>
 <html lang="en">
   <head>
@@ -44,8 +57,21 @@ $blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
         <div class="row">
 
         <div class="col-md-8" >
-        <h1>New posts</h1>
-        <a href="posts.php" class="btn btn-success" >new posts</a>
+        <h1>createPosts</h1>
+        <a href="posts.php" class="btn btn-success" >administrar contenido</a>
+        <form action="createPosts.php" method="POST" >
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">ingresa titulo</label>
+    <input name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">contenido del post</label>
+    <input  name="content" type="text" class="form-control" id="exampleInputPassword1">
+  </div>
+ 
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
        
 
       

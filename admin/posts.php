@@ -2,7 +2,7 @@
 
 <?php
 
-require_once '../config.php';
+
 $sql = "SELECT * FROM blog_post ORDER BY id DESC";
 $query = $pdo->prepare($sql);
 $query->execute();
@@ -57,8 +57,8 @@ $blogPost = $query->fetchAll(PDO::FETCH_ASSOC);
     
     echo '<tr >';
     echo '<td>'. $blogPostIter['title'] .'</td>';
-    echo '<td><a href="" >Edit</a></td>';
-    echo '<td><a href="" >delete</a></td>';
+    echo '<td><a href="updatePost.php?id='.$blogPostIter['id'].'" >Edit</a></td>';
+    echo '<td><a href="delete.php?id='.$blogPostIter['id'].'" >delete</a></td>';
     echo '</tr>';
  }
 
