@@ -1,6 +1,6 @@
 <?php
 
-
+include_once '../config.php';
 $id = $_GET['id'];
 
 $sql ='DELETE FROM blog_post WHERE id = :id';

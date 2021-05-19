@@ -4,22 +4,18 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     include_once '../config.php';
-
+    require_once '../vendor/autoload.php';
     $route = $_GET['route'] ?? '/';
-    switch($route){
-            case '/':
-             require '../index.php';
-             break;
+    use Phroute\Phroute\RouteCollector;
+    $router = new RouteCollector();
+    $router->get('/', function(){
 
-            case 'admin':
-                require '../admin/index.php';
-                break;
-
-            case 'admin/posts':
-                    require '../admin/posts.php';
-                    break;
-
-    }
+        return'/';
+    });
+    $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
+    $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $route);
+ 
+    echo $response ;
     
     
     

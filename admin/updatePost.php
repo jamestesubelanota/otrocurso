@@ -3,7 +3,7 @@
 <?php
 
 
-
+include_once '../config.php';
 if(!empty($_POST)){
 $id = $_POST['id'];
 $newTilte = $_POST['title'] ;

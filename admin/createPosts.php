@@ -2,7 +2,7 @@
 
 <?php
 
-
+include_once '../config.php';
 $result = false;
 
 if(!empty($_POST)){
